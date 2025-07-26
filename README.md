@@ -1,4 +1,4 @@
-# Pi QLED OLED Stats
+# Pi QLED OLED Stats [In Progress... not working yet]
 
 Display real-time IP address, CPU usage, and disk usage on a 128x32 OLED display connected to a Raspberry Pi 5.
 

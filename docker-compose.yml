@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  pi-oled-stats:
+    build: .
+    container_name: pi-oled-stats
+    restart: unless-stopped
+    devices:
+      - "/dev/i2c-1:/dev/i2c-1"
+    privileged: true
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["python", "pi_oled_stats.py"]

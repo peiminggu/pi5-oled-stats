@@ -69,9 +69,24 @@ Display real-time IP address, CPU usage, and disk usage on a 128x32 OLED display
    sudo usermod -aG docker $USER
    # Log out and back in for group changes to take effect
    ```
-3. **Build and run with Docker Compose:**
+3. **Install Portainer (Optional - Docker Web UI):**
    ```sh
-   cd pi-qled
+   # Create a volume for Portainer data
+   docker volume create portainer_data
+   
+   # Run Portainer container
+   docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always \
+     -v /var/run/docker.sock:/var/run/docker.sock \
+     -v portainer_data:/data \
+     portainer/portainer-ce:latest
+   ```
+   - Access Portainer at `https://your-pi-ip:9443` to manage containers via web interface
+   - Create an admin account on first visit
+   - You can use Portainer to monitor, start, stop, and manage your containers
+
+4. **Build and run with Docker Compose:**
+   ```sh
+   cd pi5-oled-stats
    docker-compose up --build
    ```
    - The container will access the I2C device and display stats on the OLED.
